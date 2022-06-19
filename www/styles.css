@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e3d3ee;
+}
+
+header {
+    padding: 10px 0;
+    border-bottom: 2px solid gray;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: rgba(219, 185, 241, 0.99);
+}
+
+header .container {
+    display: flex;
+    border: none;
+    background-color: inherit;
+}
+
+header .container .header-title {
+    margin-right: 120px;
+}
+
+header .header-title a {
+    text-decoration: none;
+    color: brown;
+}
+
+header .header-title a:hover {
+    border-bottom: 2px solid brown;
+}
+
+header .header-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+header .header-menu ul li {
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+header .header-menu ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+header .header-menu ul li a:hover {
+    border-bottom: 2px solid black;
+}
+
+header .sign-in a {
+    text-align: right;
+    margin-left: 370px;
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+header .sign-in a:hover {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    align-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #dec7ee;
+}
+
+.search_film {
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.block_films {
+    text-align: center;
+    margin: auto;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+}
+
+.block_films .block_film {
+    display: block;
+    width: 270px;
+    height: 430px;
+    background-color: #d2b0ea;
+    border-radius: 5px;
+    margin: 20px 10px;
+}
+
+.block_films .block_film:hover {
+    border: 5px solid #d2b0ea;
+    box-shadow: #d2b0ea;
+    background-color: inherit;
+}
+
+.block_films .block_film img {
+    padding: 10px 0;
+    width: 250px;
+    height: 350px;
+}
+
+.block_films .block_film .film-title a {
+    text-decoration-line: none;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.block_films .block_film .film-title a:hover {
+    color: red;
+    border-bottom: 2px solid red;
+}
+
+.error {
+    color: darkred;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 20px auto;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.page-film h2 {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.page-film .page-film-information {
+    display: flex;
+    padding: 10px;
+}
+
+.page-film .page-film-information img {
+    display: block;
+    width: 300px;
+    height: 450px;
+    margin-right: 20px;
+}
+
+.page-film .page-film-information .page-film-information-main div {
+    margin: 20px 0;
+}
+
+.page-film .page-film-information .page-film-information-main div span {
+    color: darkred;
+    font-weight: bold;
+}
+
+footer {
+    border-top: 2px solid gray;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#form-film-add {
+    padding: 20px 0;
+}
+
+#form-film-add h2 {
+    display: block;
+    width: auto;
+    text-align: center;
+    padding: 15px 0;
+}
+
+#form-film-add input, select {
+    margin: 15px auto;
+    display: block;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0 5px;
+    outline: none;
+}
+
+#form-film-add input:focus, select:focus {
+    box-shadow: 0 0 10px 2px black;
+}
+
+#form-film-add .input-film-add {
+    width: 400px;
+    height: 30px;
+}
+
+#form-film-add .submit {
+    padding: 5px 10px;
+}
+
+#form-film-add .submit:hover {
+    color: white;
+    background-color: black;
+}
+
+.submit {
+    width: 200px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: black;
+    font-weight: 600;
+    background-color: inherit;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.submit:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+.button {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    background-color: inherit;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.page-film .button {
+    margin: 20px;
+    float: right;
+}
+
+.successful {
+    padding: 20px;
+    text-align: center;
+}
+
+.successful a {
+    margin: 20px 0;
+    text-decoration: none;
+    color: darkblue;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.successful a:hover {
+    border-bottom: 2px solid darkblue;
+}
+
+.not-found {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-input {
+    display: block;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0 5px;
+    outline: none;
+}
+
+.form-input:focus {
+    box-shadow: 0 0 10px 2px black;
+}
+
+.page-sign-in {
+    padding: 20px;
+    text-align: center;
+}
+
+#form-sign-in .form-input {
+    margin: 20px auto;
+}
+
+.header-hello {
+    font-size: 20px;
+    padding-left: 190px;
+    font-weight: 600;
+}
+
+.header-hello .header-nickname {
+    color: red;
+    font-weight: 800;
+}
+
+.header-hello .submit {
+    margin-left: 5px;
+    border: 2px solid black;
+}
+
+.error-unauthorized {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 20px;
+}
+
+.error-unauthorized h2 {
+    margin-bottom: 20px;
+}
+
+.error-forbidden {
+    text-align: center;
+    padding: 30px 0;
+}
+
+#search-film-input {
+    font-size: 20px;
+    width: 450px;
+    border-radius: 5px;
+    outline: none;
+    padding: 3px;
+    margin-top: 10px;
+}
+
+#search-film-input:hover, #search-film-input:focus {
+    font-weight: 600;
+    box-shadow: 0 0 10px 2px black;
+}
+
+#footer-contacts li {
+    margin: 20px 0;
+}
