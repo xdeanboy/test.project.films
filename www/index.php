@@ -29,6 +29,13 @@ try {
     $controller = new $controllerName();
     $controller->$controllerAction(...$matches);
 
+} catch (\Test\Exceptions\DbException $e) {
+    $view = new \Test\View\View(__DIR__ . '/../templates/errors/');
+    $view->renderHtml('500.php',
+    ['title' => 'Error DB',
+        'error' => $e->getMessage()],
+    500);
+    return;
 } catch ( \Test\Exceptions\NotFoundException $e) {
     $view = new \Test\View\View(__DIR__ . '/../templates/errors/');
     $view->renderHtml('404.php',
@@ -46,5 +53,12 @@ try {
             'title' => 'Error',
             'user' => \Test\Models\Users\UserAuthServices::getUserByToken()],
         403);
+    return;
+} catch (\Test\Exceptions\FilmsByFileException $e) {
+    $view = new \Test\View\View(__DIR__ . '/../templates/errors');
+    $view->renderHtml('addByFile.php',
+    ['title' => 'Error',
+        'user' => \Test\Models\Users\UserAuthServices::getUserByToken(),
+        'error' => $e->getMessage()]);
     return;
 }

@@ -23,7 +23,7 @@ header .container {
 }
 
 header .container .header-title {
-    margin-right: 120px;
+    margin-right: 80px;
 }
 
 header .header-title a {
@@ -135,6 +135,11 @@ header .sign-in a:hover {
     align-content: center;
     align-items: center;
     text-align: center;
+}
+
+.error-db {
+    text-align: center;
+    padding: 20px 0;
 }
 
 .page-film h2 {
@@ -293,7 +298,7 @@ footer {
 
 .header-hello {
     font-size: 20px;
-    padding-left: 190px;
+    padding-left: 170px;
     font-weight: 600;
 }
 
@@ -338,4 +343,53 @@ footer {
 
 #footer-contacts li {
     margin: 20px 0;
+}
+
+.delete-confirmation {
+    text-align: center;
+    padding: 20px;
+}
+
+.delete-confirmation .film-title {
+    color: red;
+    text-decoration: none;
+}
+
+.delete-confirmation .film-title:hover {
+    border-bottom: 3px solid red;
+    font-weight: 800;
+}
+
+.delete-confirmation .delete-confirmation-action {
+    margin: 20px 0;
+}
+
+.delete-confirmation .delete-confirmation-action .submit {
+    border: 2px solid black;
+}
+
+.successful-add-file {
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.add-film-file {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.add-film-file h2 {
+    margin-bottom: 20px;
+}
+
+.error-add-file {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.error-add-file .error-add-file-text {
+    margin: 20px 0;
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
 }

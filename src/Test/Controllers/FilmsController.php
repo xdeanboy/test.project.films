@@ -2,6 +2,7 @@
 
 namespace Test\Controllers;
 
+use Test\Exceptions\FilmsByFileException;
 use Test\Exceptions\ForbiddenException;
 use Test\Exceptions\InvalidArgumentException;
 use Test\Exceptions\NotFoundException;
@@ -81,8 +82,11 @@ class FilmsController extends AbstractController
             try {
                 $film = Film::addNew($_POST);
 
-                header('Location: /film/' . $film->getId(), true, 302);
-                return;
+                if (!empty($film)) {
+                    $this->view->renderHtml('film/addSuccessful.php',
+                        ['film' => $film]);
+                    return;
+                }
             } catch (InvalidArgumentException $e) {
                 $this->view->renderHtml('film/add.php',
                     ['title' => 'Помилка',
@@ -92,6 +96,27 @@ class FilmsController extends AbstractController
         }
 
         $this->view->renderHtml('film/add.php');
+    }
+
+    public function deleteConfirmation(int $filmId): void
+    {
+        if (empty($this->user)) {
+            throw new UnauthorizedException();
+        }
+
+        if (!$this->user->isAdmin()) {
+            throw new ForbiddenException();
+        }
+
+        $film = Film::getById($filmId);
+
+        if (empty($film)) {
+            throw new NotFoundException('Фільм не знайдено');
+        }
+
+        $this->view->renderHtml('film/deleteConfirmation.php',
+            ['title' => 'Видалити фільм ' . $filmId,
+                'film' => $film]);
     }
 
     /**
@@ -136,7 +161,12 @@ class FilmsController extends AbstractController
 
         try {
             if (empty($_GET['search'])) {
-                throw new InvalidArgumentException('Поле пошуку не може бути пустим');
+                $films = Film::getAllByTitleAsc();
+
+                $this->view->renderHtml('main.php',
+                    ['title' => 'Результат пошуку'
+                        , 'films' => $films]);
+                return;
             }
 
             $foundedFilms = Film::searchByInput($_GET['search']);
@@ -150,9 +180,64 @@ class FilmsController extends AbstractController
                     'films' => $foundedFilms]);
         } catch (InvalidArgumentException $e) {
             $this->view->renderHtml('main.php',
-            ['title' => 'Помилка пошуку',
-                'error' => $e->getMessage()]);
+                ['title' => 'Помилка пошуку',
+                    'error' => $e->getMessage()]);
             return;
         }
+    }
+
+    /**
+     * @return void
+     * @throws FilmsByFileException
+     * @throws ForbiddenException
+     * @throws UnauthorizedException
+     */
+    public function addByFile(): void
+    {
+        if (empty($this->user)) {
+            throw new UnauthorizedException();
+        }
+
+        if (!$this->user->isAdmin()) {
+            throw new ForbiddenException();
+        }
+
+        if (!empty($_FILES)) {
+            $file = $_FILES['file'];
+
+            if (!empty($file['error'])) {
+                throw new FilmsByFileException('Помилка завантаження файлу');
+            }
+
+            if ($file['size'] === 0) {
+                throw new FilmsByFileException('Неможливо завантажити пустий файл');
+            }
+
+            $newFileName = $file['name'];
+
+            if (!preg_match('~^.*.txt$~', $newFileName)) {
+                throw new FilmsByFileException('Файл повинен бути типу txt');
+            }
+
+            $pathNewFile = __DIR__ . '/../../../loadedFiles/' . $newFileName;
+
+            $loadFile = false;
+            if (move_uploaded_file($file['tmp_name'], $pathNewFile)) {
+                $loadFile = true;
+            }
+
+            if (!$loadFile) {
+                throw new FilmsByFileException('Помилка загрузки файлу');
+            }
+
+            $result = Film::addFilmsByFile($pathNewFile);
+
+            $this->view->renderHtml('film/addByFileSuccessful.php',
+                ['title' => 'Успішно опрацьовано',
+                    'countFilms' => $result]);
+                    return;
+        }
+
+        $this->view->renderHtml('film/addByFile.php');
     }
 }

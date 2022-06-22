@@ -1,7 +1,8 @@
 <?php include __DIR__ . '/header.php' ?>
 <section class="container">
     <form class="search_film" action="/film-search" method="get">
-        <input type="search" name="search" placeholder="Пошук фільму" id="search-film-input">
+        <input type="search" name="search" placeholder="Пошук фільму" id="search-film-input"
+               value="<?= $_GET['search'] ?? ''?>">
     </form>
     <div class="block_films">
         <? if (!empty($error)): ?>

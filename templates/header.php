@@ -10,18 +10,22 @@
 <header>
     <div class="container">
         <div class="header-title">Тестове завдання для <a href="https://webbylab.com/en/careers"
-            target="_blank">WebbyLab</a></div>
+                                                          target="_blank">WebbyLab</a></div>
         <nav class="header-menu">
             <ul>
                 <li><a href="/">Головна</a></li>
                 <li><a href="#footer-contacts">Контакти</a></li>
-                <li><a href="/film/add">Додати</a></li>
+                <? if (!empty($user)): ?>
+                    <? if ($user->isAdmin()): ?>
+                        <li><a href="/film/add">Додати</a></li>
+                        <li><a href="/film/add-by-file">Файл</a></li>
+                    <? endif; ?>
+                <? endif; ?>
             </ul>
         </nav>
 
         <? if (!empty($user)): ?>
-            <div class="header-hello">
-                Привіт, <span class="header-nickname"><?= $user->getNickname() ?></span>
+            <div class="header-hello">Привіт, <span class="header-nickname"><?= $user->getNickname() ?></span>
                 <a href="/logout" class="submit">Вийти</a>
             </div>
         <? else: ?>

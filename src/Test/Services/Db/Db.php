@@ -21,7 +21,7 @@ class Db
 
             $this->pdo->exec('SET NAMES UTF8');
         } catch (\PDOException $e) {
-            throw new DbException('Помилка підключення до БД');
+            throw new DbException('Помилка підключення до БД: ' . $e->getMessage());
         }
     }
 
